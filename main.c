@@ -2,38 +2,39 @@
 #include <stdlib.h>
 
 typedef enum{
-    SEMI,
-    OPEN_PAREN,
-    CLOSE_PAREN,
-} TypeSeperator;
+    SEMI,
+    OPEN_PAREN,
+    CLOSE_PAREN,
+} TypeSeparator;
 
 typedef enum{
-    EXIT,
+    EXIT,
 } TypeKeyword;
 
 typedef enum{
-    INT
+    INT,
 } TypeLiteral;
 
 typedef struct{
-    TypeKeyword type;
+    TypeKeyword type;
 } TokenKeyword;
 
-typedef struct{
-    TypeLiteral type;
-    int value;
+typedef struct {
+    TypeLiteral type;
+    int value;
 } TokenLiteral;
 
-typedef struct{
-    TypeSeperator type;
-} TokenSeperator;
+typedef struct {
+    TypeSeparator type;
+} TokenSeparator;
 
 int main(){
-    TokenLiteral token;
-    token.type= INT;
-    token.value = 5;
+    FILE *file;
+    file = fopen("test.sy", "r");
+    char current = fgetc(file);
 
-    printf("%d\n", token.value);
-
-    return 0;
+    while(current != EOF){
+        printf("%c", current);
+        current = fgetc(file);
+    }
 }
