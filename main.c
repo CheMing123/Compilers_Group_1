@@ -1,40 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h> // to use isaplpha, to check if number is alphanumeric
 
 typedef enum{
-� � SEMI,
-� � OPEN_PAREN,
-� � CLOSE_PAREN,
+    SEMI,
+    OPEN_PAREN,
+    CLOSE_PAREN,
 } TypeSeparator;
 
 typedef enum{
-� � EXIT,
+    EXIT,
 } TypeKeyword;
 
 typedef enum{
-� � INT,
+    INT,
 } TypeLiteral;
 
 typedef struct{
-� � TypeKeyword type;
+    TypeKeyword type;
 } TokenKeyword;
 
 typedef struct {
-� � TypeLiteral type;
-� � int value;
+    TypeLiteral type;
+    int value;
 } TokenLiteral;
 
+void lexer(FILE *file){
+    char current = fgetc(file);
+
+    while(current != EOF){
+        if(current == ';'){
+            printf("FOUND SEMICOLON\n");
+        }
+        else if(current == '('){
+            printf("FOUND OPEN PARENTHESES\n");
+        }
+        else if(current == ')'){
+            printf("FOUND CLOSED PARENTHESES\n");
+        }
+        else if(isdigit(current)){
+            printf("FOUND DIGIT: %d\n", current);
+        }
+        current = fgetc(file);
+    }
+}
+
 typedef struct {
-� � TypeSeparator type;
+    TypeSeparator type;
 } TokenSeparator;
 
 int main(){
-� � FILE *file;
-� � file = fopen("test.sy", "r");
-� � char current = fgetc(file);
-
-� � while(current != EOF){
-� � � � printf("%c", current);
-� � � � current = fgetc(file);
-� � }
+    FILE *file;
+    file = fopen("test.sy", "r");
+    lexer(file);
 }
