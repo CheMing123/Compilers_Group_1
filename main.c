@@ -3,12 +3,6 @@
 #include <ctype.h>
 #include <string.h>
 
-/*********************
-* Notes: digits are not recognized in the lexer, have to look for an 
-* alternative way to read strings                     
-* stayed in 39:53 
-**********************/
-
 typedef enum{
     OPEN_PARENTHESES,
     CLOSE_PARENTHESES,
