@@ -1,7 +1,8 @@
 #ifndef LEXER_H_
-#define LEXER_H
+#define LEXER_H_
 
 typedef enum{
+    BEGINNING,
     INT,
     KEYWORD,
     SEPARATOR,
@@ -12,7 +13,6 @@ typedef struct{
     TokenType type;
     char *value;
 } Token;
-
 
 void print_token(Token token);
 Token *generate_number(char *current, int *current_index);

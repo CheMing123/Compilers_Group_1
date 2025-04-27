@@ -4,6 +4,7 @@
 #include <string.h>
 
 typedef enum{
+    BEGINNING,
     INT,
     KEYWORD,
     SEPARATOR,
@@ -38,6 +39,11 @@ void print_token(Token token){
 
         case END_OF_TOKENS:
         printf(" TOKEN TYPE: END_OF_TOKENS\n");
+        break;
+        
+        case BEGINNING:
+        printf(" BEGINNING\n");
+        break;
     }
 }
 

@@ -5,6 +5,7 @@
 
 #include "lexerf.h"
 #include "parserf.h"
+#include "codegeneratorf.h"
 
 int main(int argc, char *argv[]){
     
@@ -29,5 +30,13 @@ int main(int argc, char *argv[]){
         print_token(tokens[i]);
     }
 
-    parser(tokens);
+    Node *test = parser(tokens);
+
+    generate_code(test);
+    FILE *assembly_file = fopen("generated.asm", "r");
+    if(!assembly_file){
+        printf("ERROR");
+        exit(1);
+    }
+    system("./buildasm.sh");
 }
