@@ -1,1 +1,4 @@
-exit(1);
+int y = 10;
+int x = 12;
+int z = x * y;
+exit(z);
